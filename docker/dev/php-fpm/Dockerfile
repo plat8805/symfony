@@ -20,4 +20,7 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 RUN git config --global user.email "platium.gold@gmail.com" && \
     git config --global user.name "plat8805"
 
+RUN useradd -rm -d /home/www -s /bin/bash -g root -G sudo -u 1000 www
+USER www
+
 EXPOSE 9000
