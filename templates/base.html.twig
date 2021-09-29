@@ -7,18 +7,23 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+    <div id="app">
         {% block body %}
-        bla bla bala
+
         {% endblock %}
+    </div>
+    
         {% block scrip %}
-            bla bla bala
+
         {% endblock %}
     </body>
 </html>
