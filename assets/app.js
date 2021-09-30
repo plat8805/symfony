@@ -11,10 +11,10 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-import Vue from 'vue';
-
-const app = new Vue({
-    el: '#app',
-    template: '<h1>Hello Vue! Is this cooler?</h1>',
-});
+// import Vue from 'vue';
+//
+// const app = new Vue({
+//     el: '#app',
+//     template: '<h1>Hello Vue! Is this cooler?</h1>',
+// });
 
