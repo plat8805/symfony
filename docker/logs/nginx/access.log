@@ -427,3 +427,8 @@
 172.18.0.1 - - [30/Sep/2021:20:54:43 +0000] "GET /build/vendors-node_modules_vue-loader_lib_runtime_componentNormalizer_js-node_modules_vue_dist_vue_esm_js.js HTTP/1.1" 304 0 "http://127.0.0.1/product" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
 172.18.0.1 - - [30/Sep/2021:20:54:43 +0000] "GET /build/products.js HTTP/1.1" 200 49588 "http://127.0.0.1/product" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
 172.18.0.1 - - [30/Sep/2021:20:54:43 +0000] "GET /_wdt/090e82 HTTP/1.1" 200 3408 "http://127.0.0.1/product" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
+172.18.0.1 - - [01/Oct/2021:19:16:16 +0000] "GET /create-category HTTP/1.1" 200 59 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
+172.18.0.1 - - [01/Oct/2021:19:16:16 +0000] "GET /favicon.ico HTTP/1.1" 404 40566 "http://127.0.0.1/create-category" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
+172.18.0.1 - - [01/Oct/2021:19:24:40 +0000] "GET /category/1 HTTP/1.1" 200 52 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
+172.18.0.1 - - [01/Oct/2021:19:25:30 +0000] "GET /category/1 HTTP/1.1" 200 53 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
+172.18.0.1 - - [01/Oct/2021:19:26:09 +0000] "GET /category/1 HTTP/1.1" 200 60 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"
