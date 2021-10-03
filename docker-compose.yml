@@ -39,7 +39,14 @@ services:
       - SA_PASSWORD=1Ghbdtn!
     ports:
       - "1433:1433"
+    volumes:
+      - ms_sqlserver_data:/var/opt/mssql
 
+
+volumes:
+
+  ms_sqlserver_data:
+    driver: local
 
 #  shop-node:
 #    container_name: shop-node
