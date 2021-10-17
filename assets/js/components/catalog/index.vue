@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar-component></navbar-component>
     <title-component :text="title"></title-component>
 
     <product-list :products="products"></product-list>
@@ -8,15 +7,13 @@
 </template>
 
 <script>
-import NavbarComponent from '@/components/layouts/navbar';
 import TitleComponent from '@/components/title';
 import ProductList from '@/components/catalog/products';
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "CatalogComponent",
   components: {
-    NavbarComponent,
     TitleComponent,
     ProductList
   },
