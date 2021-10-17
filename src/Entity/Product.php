@@ -2,19 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\HttpFoundation\File\File;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  * @Vich\Uploadable
  */
-#[ApiResource(normalizationContext: ['groups' => ['product']])]
+#[ApiResource(normalizationContext:['groups' => ['product']])]
 class Product
 {
     /**
@@ -49,6 +51,28 @@ class Product
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTimeInterface|null
+     */
+    private $createdAt;
+
+    public function __construct(){
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\Column(type="string", length=128, unique=true)
+     * @Gedmo\Slug(fields={"name", "createdAt"}, style="camel", separator="_", updatable=false, unique=false, dateFormat="d/m/Y H-i-s")
+     * @Groups({"product"})
+     */
+    private $slug;
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
 
     /* @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile  */
     public function setImageFile(?File $imageFile = null): void
@@ -63,7 +87,7 @@ class Product
 
     public function getImageFile(): ?File
     {
-       return $this->imageFile;
+        return $this->imageFile;
     }
 
     public function setImageName(?string $imageName): void
@@ -75,6 +99,8 @@ class Product
     {
         return $this->imageName;
     }
+
+
 
     /**
      * @ORM\Column(type="text")

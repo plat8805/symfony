@@ -21,7 +21,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/create-product', name: 'create_product')]
-    public function createBrand(): Response
+    public function createProduct(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
 
