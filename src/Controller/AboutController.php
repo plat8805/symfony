@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Psr\Log\LoggerInterface;
+//use Psr\Log\LoggerInterface;
 
 
 class AboutController extends AbstractController
