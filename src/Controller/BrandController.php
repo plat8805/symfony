@@ -6,61 +6,88 @@ use App\Entity\Brand;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
 class BrandController extends AbstractController
 {
-    #[Route('/brand', name: 'brand')]
-    public function index(): Response
+    #[Route('/brands', name: 'brands')]
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $repository = $doctrine->getRepository(Brand::class);
+        $brands = $repository->findAll();
+        dump($brands);
+        die();
+
         return $this->render('brand/index.html.twig', [
             'controller_name' => 'BrandController',
         ]);
     }
 
+//    #[Route('/brand', name: 'brand')]
+//    public function index(): Response
+//    {
+//        return $this->render('brand/index.html.twig', [
+//            'controller_name' => 'BrandController',
+//        ]);
+//    }
+
     #[Route('/create-brand', name: 'create_brand')]
-    public function createBrand(): Response
+    public function create(ManagerRegistry $doctrine): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $em = $doctrine->getManager();
 
         $brand = new Brand();
-        $brand->setName('Dogs House');
-        $brand->setDescription('Bla bla bla');
+        $brand->setName('Some new brand');
+        $brand->setDescription('Some new brand description');
+        $em->persist($brand);
+        $em->flush();
 
-        $entityManager->persist($brand);
-        $entityManager->flush();
-
-        return new Response('New $brand created successful '.$brand->getId());
+        return new Response('Brand created successully '.$brand->getName());
     }
 
-    #[Route('/update-brand/{id}', name: 'update_brand')]
-    public function updateBrand(int $id): Response
+//    #[Route('/create-brand', name: 'create_brand')]
+//    public function create(): Response
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $brand = new Brand();
+//        $brand->setName('Some brand');
+//        $brand->setDescription('Some brand description');
+//        $em->persist($brand);
+//        $em->flush();
+//
+//        return new Response('Brand created successully '.$brand->getName());
+//    }
+
+    #[Route('/brand/edit/{id}', name: 'edit_brand')]
+    public function update(ManagerRegistry $doctrine, int $id): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $em = $doctrine->getManager();
 
-        $brand = $this->getDoctrine()->getRepository(Brand::class)->find($id);
-        $brand->setName('Cats House');
-        $brand->setDescription('Only cool cats');
+        $brand = $em->getRepository(Brand::class)->find($id);
+        $brand->setName('Some updated brand');
+        //$brand->setDescription('Some new brand description');
+        //$em->persist($brand);
+        $em->flush();
 
-        $entityManager->persist($brand);
-        $entityManager->flush();
-
-        return new Response('$brand updated successful '.$brand->getDescription());
-
+        return new Response('Brand updated successully '.$brand->getName());
     }
 
-    #[Route('/delete-brand/{id}', name: 'delete_brand')]
-    public function deleteBrand(int $id): Response
+    #[Route('/brand/delete/{id}', name: 'delete_brand')]
+    public function delete(ManagerRegistry $doctrine, Brand $brand): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $em = $doctrine->getManager();
 
-        $brand = $this->getDoctrine()->getRepository(Brand::class)->find($id);
-        $entityManager->remove($brand);
+        $em->remove($brand);
+        $em->flush();
 
-        $entityManager->flush();
-
-        return new Response('$brand deleted successful '.$id);
+        return new Response('Brand removed');
     }
+
+    #[Route('/brand/show/{id}', name: 'show_brand')]
+    public function show(Brand $brand): Response
+    {
+        return new Response('Brand name '.$brand->getName());
+    }
+
 }
-
-
-
