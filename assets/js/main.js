@@ -1,17 +1,11 @@
-import '../scss/main.scss';
+import 'styles/main.scss';
 
 import Vue from "vue";
-import Main from './Main';
+import Main from '@/Main';
+import router from '@/router';
 
-Vue.component('hello', {
-    template: "<h1>Hello Vue Js</h1>"
-});
-
-let mycomp = {
-    template: "<h1>Hello Local Component</h1>"
-}
 new Vue({
+    router,
     render: h => h(Main)
-
 }).$mount('#app');
 

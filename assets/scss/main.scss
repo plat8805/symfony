@@ -1,13 +1,29 @@
 @import '~bootstrap';
 
-ul.nav li:hover,
-a.router-link-active:hover,
-.nav li a.router-link-exact-active{
-  color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity))!important;
-  cursor: pointer;
+.reset-anchor {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: #9055A2;
+  }
 }
 
-
-a.router-link-active{
-  color: white;
+.bg-none{
+  background: none !important;
 }
+
+//ul.nav li:hover,
+//a.router-link-active:hover,
+//.nav li a.router-link-exact-active{
+//  color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity))!important;
+//  cursor: pointer;
+//}
+//
+//
+//a.router-link-active{
+//  color: white;
+//}

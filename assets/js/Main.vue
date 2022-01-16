@@ -1,12 +1,24 @@
 <template>
 <div>
-  <h2 class="hello">{{ message }}</h2>
+  <navbar-component></navbar-component>
+  <router-view></router-view>
+ <footer-component></footer-component>
 </div>
 </template>
 
 <script>
+
+import {
+  NavbarComponent,
+  FooterComponent
+} from '@/components/layouts';
+
 export default {
   name: "Main",
+  components:{
+    NavbarComponent,
+    FooterComponent
+  },
   data(){
     return{
       message: "Welcome to external component"
