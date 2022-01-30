@@ -26,6 +26,13 @@ const routes = [
             )
     },
     {
+        path: '/cart',
+        component: () => import(
+            /* webpackChunkName: "cart" */
+            "@/views/Cart.vue"
+            )
+    },
+    {
         path: '/not-found',
         alias: '*',
         component: {
