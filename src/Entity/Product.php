@@ -2,40 +2,60 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
+#[ApiResource(
+    normalizationContext: ['groups' => ['product', 'products']],
+    collectionOperations: [
+        'get' => [
+            'method' => 'get'
+        ],
+    ],
+    itemOperations: [
+        'get' => [
+            'method' => 'get',
+        ],
+    ],
+)]
 class Product
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"products", "product"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"products"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"product"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @Groups({"products", "product"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"product"})
      */
     private $quantity;
 
@@ -47,6 +67,7 @@ class Product
     /**
      * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"products", "product"})
      */
     private $brand;
 
