@@ -2,10 +2,10 @@
   <div class="product">
     <div class="image d-flex align-items-center justify-content-center bg-light">
       <div class="ribbon ribbon-primary text-uppercase">Sale</div>
-      <img v-if="product.image" class="img-fluid" :src=" require('../../assets/' + product.image)"
+      <img v-if="product.cover" class="img-fluid" :src="'/images/products/' + product.cover"
            alt="product">
       <div class="hover-overlay d-flex align-items-center justify-content-center">
-        <div class="CTA d-flex align-items-center justify-content-center"><a href="#"><i class="fas fa-shopping-cart"></i></a><a class="active" href="#"><i class="fas fa-search"></i> View</a><a href="#" data-bs-toggle="modal" data-bs-target="#productView"><i class="fas fa-expand"></i></a></div>
+        <div class="CTA d-flex align-items-center justify-content-center"><a href="#" @click="addProductToCart"><i class="fas fa-shopping-cart"></i></a><a class="active" href="#"><i class="fas fa-search"></i> View</a><a href="#" data-bs-toggle="modal" data-bs-target="#productView"><i class="fas fa-expand"></i></a></div>
       </div>
     </div>
     <div class="pt-3"><small class="text-muted">{{product.category}}</small><a class="reset-anchor" href="#">
@@ -15,6 +15,9 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+import {CartAction} from "@/store/types.actions";
+
 export default {
   name: "ProductItem",
   props: {
@@ -25,6 +28,14 @@ export default {
       }
     }
   },
+  methods: {
+    ...mapActions('cart', {
+      addProduct: CartAction.ADD_PRODUCT_TO_CART,
+    }),
+    addProductToCart() {
+      this.addProduct({product: this.product, quantity: 1});
+    }
+  }
 }
 </script>
 

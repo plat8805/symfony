@@ -44,6 +44,8 @@ final class ProductFactory extends ModelFactory
             'price' => self::faker()->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 3000),
             'quantity' => self::faker()->randomNumber(),
             'status' => self::faker()->boolean(),
+            'cover' => self::faker()->randomElement(['p1.jpg', 'p1.jpg', 'p1.jpg', ]),
+            'ribbon' => self::faker()->numberBetween(0,4),
         ];
     }
 

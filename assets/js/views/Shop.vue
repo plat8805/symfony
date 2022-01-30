@@ -21,10 +21,13 @@
   export default {
   name: "Shop",
   components: {
-  HeaderSection,
-  ProductList,
-  SideBar
-}
+    HeaderSection,
+    ProductList,
+    SideBar
+  },
+    created () {
+      this.$store.dispatch('products/getProducts');
+    },
 }
 </script>
 

@@ -76,6 +76,17 @@ class Product
      */
     private $bookingItems;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"products", "product"})
+     */
+    private $cover;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $ribbon;
+
     public function __construct()
     {
         $this->bookingItems = new ArrayCollection();
@@ -184,6 +195,30 @@ class Product
                 $bookingItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getRibbon(): ?int
+    {
+        return $this->ribbon;
+    }
+
+    public function setRibbon(?int $ribbon): self
+    {
+        $this->ribbon = $ribbon;
 
         return $this;
     }
