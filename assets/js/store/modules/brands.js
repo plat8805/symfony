@@ -1,24 +1,28 @@
-import http from '@/services/http';
+// assets/js/store/modules/brand.js
+// import axios from 'axios';
+import http from "@/services/http";
 
 const state = {
-    all: [],
-}
+    all: []
+};
 
 const getters = {};
 
+// Объявление мутации
 const mutations = {
-    SET_BRANDS (state, brands){
+    SET_BRANDS (state, brands) {
         state.all = brands;
     }
 };
 
 const actions = {
-    getBrands(context) {
+    getBrands (context) {
         http
             .getAll('/brands')
             .then(response => {
+                // Вызов мутации в компоненте
                 context.commit('SET_BRANDS', response.data);
-                console.log(response.data);
+                // console.log(response.data)
             })
             .catch(error => {
                 console.log(error);
@@ -32,4 +36,4 @@ export default {
     getters,
     mutations,
     actions
-};
+}

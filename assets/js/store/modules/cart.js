@@ -1,30 +1,64 @@
-import {CartService} from '@/services/local/cart';
-import {CartAction} from "../types.actions";
+// "@/store/modules/cart";
+import {CartService} from "@/services/local/cart";
+import {CartAction} from "@/store/types.actions";
 
 const state = {
     all: [],
-}
-
-const getters = {};
+};
 
 const mutations = {
-    'SET_CART_ITEMS' (state, cartItems){
+    'SET_CART_ITEMS'(state, cartItems) {
         state.all = cartItems;
+    },
+
+    CLEAR_CART: (state) => {
+        state.all = [];
     }
 };
 
 const actions = {
-    [CartAction.ADD_PRODUCT_TO_CART]: (context, {product, quantity }) => {
+
+    [CartAction.ADD_PRODUCT_TO_CART]: (context, {product, quantity}) => {
         const cartItems = CartService.addItem(product, quantity);
         context.commit(CartAction.SET_CART_ITEMS, cartItems);
-    }
+    },
+    [CartAction.REMOVE_FROM_CART]: ({commit}, product) => {
+        const cartItems = CartService.removeItem(product);
+        commit(CartAction.SET_CART_ITEMS, cartItems);
+    },
 
+    [CartAction.UPDATE_CART_ITEM_QUANTITY](context, {cartItem, quantity}) {
+        context.dispatch(CartAction.ADD_PRODUCT_TO_CART, {product: cartItem, quantity: parseInt(quantity)})
+    },
+    'CLEAR_CART'(context) {
+        CartService.emptyCart();
+        context.commit(CartAction.CLEAR_CART);
+    }
 };
 
-export default {
+const getters = {
+    getProductsInCart: state => state.all,
+
+    getTotalPrice: (state) => {
+        let res = 0;
+        state.all.map(item => {
+            res += item.price * item.quantity;
+        });
+        return res;
+    },
+
+    getCartItemsAmount: state => {
+        return state.all.reduce((total, item) => {
+            total += item.quantity;
+            return total
+        }, 0);
+    },
+};
+
+export const cart = {
     namespaced: true,
     state,
-    getters,
     mutations,
-    actions
+    actions,
+    getters
 };

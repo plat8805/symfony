@@ -14,8 +14,8 @@
                 <div class="col-1 text-center">Remove</div>
               </div>
             </div>
-            <div class="p-4 border-bottom" v-for="product in products_in_cart" v-bind:key="product.name">
-              <cart-item :product="product"></cart-item>>
+            <div class="p-4 border-bottom" v-for="(cartItem, index) in getProductsInCart" v-bind:key="index">
+              <cart-item :cartItem="cartItem"></cart-item>>
             </div>
           </div>
         </div>
@@ -66,7 +66,9 @@
               </ul>
             </div>
           </div>
-          <div class="col-lg-12 text-center py-4"><a class="btn btn-primary btn-lg px-5" href="checkout1.html">Proceed to checkout<i class="fas fa-long-arrow-alt-right ms-2"></i></a></div>
+          <div class="col-lg-12 text-center py-4">
+            <router-link to="/checkout" class="btn btn-primary btn-lg px-5">
+              Proceed to checkout<i class="fas fa-long-arrow-alt-right ms-2"></i></router-link></div>
         </div>
       </div>
     </section>
@@ -75,20 +77,35 @@
 
 <script>
 import CartItem from './CartItem';
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "CartList",
   components: {
     CartItem,
   },
-  data() {
-    return {
-      products_in_cart: [
-        {name: 'Elegant Lake', price: '40.00', 'category': 'Men Wear', 'image': 'p1.jpg', 'ribbon': 'Sale'},
-        {name: 'Elegant Blue', price: '40.00', 'category': 'Men Wear', 'image': 'p2.jpg', 'ribbon': ''},
-      ],
+
+  computed: {
+    ...mapGetters('cart', [
+      'getProductsInCart'
+    ])
+  },
+  methods: {
+    ...mapActions('cart', {
+      clearCartAction: CartItem.CLEAR_CART
+    }),
+    hasProduct() {
+      return this.getProductsInCart.length > 0;
+    },
+    clearCart() {
+      this.clearCartAction();
     }
   }
+  // data() {
+  //   return {
+  //
+  //   }
+  // }
 }
 
 </script>
