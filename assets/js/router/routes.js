@@ -49,6 +49,7 @@ const routes = [
     },
     {
         path: '/customer-auth',
+        name: 'login',
         component: () => import(
             /* webpackChunkName: "auth" */
             "@/views/Auth.vue"
@@ -79,12 +80,16 @@ const routes = [
             isAuthenticated: true,
         }
     },
-    // {
-    //     path: '/register', component: Register, name: 'register',
-    //     meta: {
-    //         isAuthenticated: false
-    //     }
-    // },
+    {
+        path: '/register',
+        component: () => import(
+            /* webpackChunkName: "auth" */
+            "@/views/Register.vue"
+            ),
+        meta: {
+            isAuthenticated: false
+        }
+    },
     {
         path: '/not-found',
         alias: '*',

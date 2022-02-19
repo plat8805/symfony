@@ -1,4 +1,3 @@
-
 // assets/js/services/http.js
 
 class HttpService {
@@ -9,6 +8,10 @@ class HttpService {
 
     get(url, id) {
         return axios.get(`${url}/${id}`);
+    }
+
+    register(user) {
+        return axios.post('/register', user);
     }
 }
 
