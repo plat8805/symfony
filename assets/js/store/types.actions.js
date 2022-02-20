@@ -35,6 +35,7 @@ export const AuthAction = {
     local: {
         SET_USER: 'SET_USER',
         LOGOUT: 'LOGOUT',
+        SET_TOKEN:'SET_TOKEN',
 
         IS_REGISTERING: 'IS_REGISTERING',
         IS_LOGGING_IN: 'IS_LOGGING_IN',

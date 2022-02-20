@@ -13,7 +13,10 @@ class HttpService {
     register(user) {
         return axios.post('/register', user);
     }
-}
 
+    login(loginForm) {
+        return axios.post('/login', loginForm);
+    }
+}
 
 export default new HttpService();

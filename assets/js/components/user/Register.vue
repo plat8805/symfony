@@ -38,8 +38,10 @@
 </template>
 
 <script>
+
 import {mapActions} from 'vuex';
 import {AuthAction} from "@/store/types.actions";
+
 export default {
   name: "RegisterForm",
   data() {
@@ -63,9 +65,10 @@ export default {
       })
     }
   }
+
 }
 </script>
 
-
 <style scoped>
+
 </style>

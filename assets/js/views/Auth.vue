@@ -7,7 +7,7 @@
         <div class="row gy-5 gx-5">
 
           <login-form></login-form>
-          <register-form></register-form>
+
 
         </div>
       </div>
@@ -20,14 +20,14 @@
 
 import {HeaderSection} from '@/components/layouts';
 import LoginForm from '@/components/user/Login';
-import RegisterForm from '@/components/user/Register';
+
 
 export default {
   name: "Auth",
   components: {
     HeaderSection,
     LoginForm,
-    RegisterForm
+
   },
 }
 </script>

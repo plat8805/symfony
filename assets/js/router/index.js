@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
         // User should be authenticated
         if (user == null) {
             return next({
-                path: '/customer-auth',
+                path: '/login',
                 params: {nextUrl: to.fullPath}
             });
         } else {

@@ -23,7 +23,6 @@ class CustomerRepository extends ServiceEntityRepository implements PasswordUpgr
         parent::__construct($registry, Customer::class);
     }
 
-
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
